@@ -7,7 +7,7 @@ pipeline{
     stage('build'){
      steps{
      git "https://github.com/jenkins-docs/simple-java-maven-app.git"
-     bat 'mnv clean package' 
+     bat 'mvn clean package' 
      }
     }
   }
