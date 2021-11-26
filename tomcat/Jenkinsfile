@@ -4,6 +4,11 @@ pipeline{
   tools{
     maven "mymaven"
   }
+  environment{
+        tomcatWebLocation="\"C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps""
+        tomcatBinLocation="\"C:\Program Files\Apache Software Foundation\Tomcat 9.0\\bin""
+        buildLocation="C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\pipeline_git_Jenkinsfile_tomcat\\mywebapp\\target\\mywebapp.war"
+    }
   stages {
     stage('Git checkout'){
      steps{
@@ -20,5 +25,14 @@ pipeline{
       }
     }
   }
-
+  post{
+        success{
+ 
+            bat """
+                copy %buildLocation%  %tomcatWebLocation%
+                
+            """
+ 
+        }
+    }
 }
