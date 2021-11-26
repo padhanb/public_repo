@@ -1,0 +1,24 @@
+pipeline{
+ agent any
+ 
+  tools{
+    maven "mymaven"
+  }
+  stages {
+    stage('Git checkout'){
+     steps{
+     git "https://github.com/codewithz/dxc-web-app.git"
+     
+     }
+    }
+    stage(Maven Build){
+      steps{
+       bat"""
+        cd mywebapp
+        mvn clean package
+        """
+      }
+    }
+  }
+
+}
